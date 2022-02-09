@@ -12,6 +12,7 @@ function Dashboard({
 }) {
   const [currentOption, setCurrentOption] = useState("allBlogs");
   const [allBlogs, setAllBlogs] = useState(null);
+  const [myBlogs, setMyBlogs] = useState(null);
 
   const logout = (result) => {
     console.log(result);
@@ -35,6 +36,7 @@ function Dashboard({
         email: email,
       }).then((result) => {
         console.log(result);
+        setMyBlogs(result.data.userBlogs);
       });
     }
   }, [username]);
@@ -86,8 +88,21 @@ function Dashboard({
           )}
 
           {currentOption == "myBlogs" && (
-            <div>
+            <div className="blogContainer">
               <h2>My Blogs</h2>
+              <div className="blogsRow">
+                {myBlogs &&
+                  myBlogs.map((blog) => {
+                    return (
+                      <div key={blog._id} className="blog">
+                        <h2>{blog.blogName}</h2>
+
+                        <p>{blog.blogMessage}</p>
+                        <p>Blog by: {blog.blogUser}</p>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           )}
         </div>
