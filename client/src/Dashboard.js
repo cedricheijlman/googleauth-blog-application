@@ -32,14 +32,16 @@ function Dashboard({
       newBlogName !== "" &&
       newBlogMessage !== ""
     ) {
-      Axios.post("http://localhost:3001/addBlog", {
+      let newBlog = {
         blogName: newBlogName,
         blogMessage: newBlogMessage,
         blogUser: username,
         blogEmail: email,
-      }).then((result) => {
+      };
+      Axios.post("http://localhost:3001/addBlog", newBlog).then((result) => {
         console.log(result);
         setAdded(true);
+        myBlogs.push(newBlog);
         setInterval(() => {
           setAdded(false);
         }, 4000);
