@@ -33,10 +33,19 @@ app.get("/allBlogs", async (req, res) => {
 });
 
 // get all posts except from user
-app.get("/allBlogsExcUser", (req, res) => {});
+app.get("/allBlogsExcUser", async (req, res) => {});
 
 // get user blogs
-app.get("userBlogs", (req, res) => {});
+app.post("/userBlogs", async (req, res) => {
+  try {
+    const email = req.body.email;
+    const userBlogs = await Blog.find({ blogEmail: email });
+
+    res.status(200).json({ status: "success", userBlogs });
+  } catch (err) {
+    res.status(400).json({ status: "error", errorMessage: err });
+  }
+});
 
 // add blog
 app.post("/addBlog", async (req, res) => {

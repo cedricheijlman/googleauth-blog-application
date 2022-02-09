@@ -9,13 +9,20 @@ import Login from "./Login";
 function App() {
   const [username, setUsername] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
+  const [email, setEmail] = useState(null);
 
   return (
     <div className="App">
       <Routes>
         <Route
           path="/"
-          element={<Login setUsername={setUsername} setImgUrl={setImgUrl} />}
+          element={
+            <Login
+              setEmail={setEmail}
+              setUsername={setUsername}
+              setImgUrl={setImgUrl}
+            />
+          }
         />
         <Route
           path="/dashboard"
@@ -25,6 +32,8 @@ function App() {
               setUsername={setUsername}
               setImgUrl={setImgUrl}
               username={username}
+              email={email}
+              setEmail={setEmail}
             />
           }
         />

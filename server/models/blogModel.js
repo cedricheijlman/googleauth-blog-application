@@ -13,6 +13,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: [true, "Blog must have user"],
   },
+  blogEmail: {
+    type: String,
+    required: [true, "Blog must have user email adress"],
+  },
 });
 
 const Blog = mongoose.model("Blog", blogSchema);

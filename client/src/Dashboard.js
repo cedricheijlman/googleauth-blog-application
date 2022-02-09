@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { GoogleLogout } from "react-google-login";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
-function Dashboard({ imgUrl, username, setUsername, setImgUrl }) {
+function Dashboard({
+  imgUrl,
+  username,
+  setUsername,
+  setImgUrl,
+  setEmail,
+  email,
+}) {
   const [currentOption, setCurrentOption] = useState("allBlogs");
   const [allBlogs, setAllBlogs] = useState(null);
 
@@ -10,6 +17,7 @@ function Dashboard({ imgUrl, username, setUsername, setImgUrl }) {
     console.log(result);
     setUsername(null);
     setImgUrl(null);
+    setEmail(null);
   };
   let navigate = useNavigate();
   useEffect(() => {
@@ -21,6 +29,12 @@ function Dashboard({ imgUrl, username, setUsername, setImgUrl }) {
       Axios.get("http://localhost:3001/allBlogs").then((result) => {
         console.log(result.data.allBlogs);
         setAllBlogs(result.data.allBlogs);
+      });
+
+      Axios.post("http://localhost:3001/userBlogs", {
+        email: email,
+      }).then((result) => {
+        console.log(result);
       });
     }
   }, [username]);
