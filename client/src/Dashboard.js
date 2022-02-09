@@ -49,9 +49,10 @@ function Dashboard({
     }
 
     if (username) {
-      Axios.get("http://localhost:3001/allBlogs").then((result) => {
-        console.log(result.data.allBlogs);
-        setAllBlogs(result.data.allBlogs);
+      Axios.post("http://localhost:3001/allBlogsExcUser", {
+        email: email,
+      }).then((result) => {
+        setAllBlogs(result.data.allBlogsExcUser);
       });
 
       Axios.post("http://localhost:3001/userBlogs", {

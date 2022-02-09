@@ -16,7 +16,7 @@ function Login({ setUsername, setImgUrl, setEmail }) {
   };
   return (
     <div>
-      <h1>Login with google</h1>
+      <h1>Roc Dev Blog Posts</h1>
       <GoogleLogin
         theme="dark"
         hostedDomain="roc-dev.com"

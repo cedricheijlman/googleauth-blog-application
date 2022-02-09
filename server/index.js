@@ -21,19 +21,19 @@ mongoose
     console.log("test");
   });
 
-// get all posts
-app.get("/allBlogs", async (req, res) => {
+// get all posts except from user
+app.post("/allBlogsExcUser", async (req, res) => {
   try {
-    const allBlogs = await Blog.find();
+    let email = req.body.email;
+    const allBlogsExcUser = await Blog.find({
+      blogEmail: { $ne: email },
+    });
 
-    res.status(200).json({ status: "success", allBlogs });
+    res.status(200).json({ status: "success", allBlogsExcUser });
   } catch (err) {
     res.status(400).json({ status: "error", errorMessage: err });
   }
 });
-
-// get all posts except from user
-app.get("/allBlogsExcUser", async (req, res) => {});
 
 // get user blogs
 app.post("/userBlogs", async (req, res) => {
