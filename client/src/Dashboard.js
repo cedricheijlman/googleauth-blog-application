@@ -31,6 +31,14 @@ function Dashboard({
       newBlogName !== "" &&
       newBlogMessage !== ""
     ) {
+      Axios.post("http://localhost:3001/addBlog", {
+        blogName: newBlogName,
+        blogMessage: newBlogMessage,
+        blogUser: username,
+        blogEmail: email,
+      }).then((result) => {
+        console.log(result);
+      });
     }
   };
 
@@ -132,7 +140,11 @@ function Dashboard({
               <h5>Blog Name</h5>
               <input onChange={(e) => setNewBlogName(e.target.value)} />
               <h5>Blog Message</h5>
-              <input onChange={(e) => setNewBlogMessage(e.target.value)} />
+              <textarea
+                onChange={(e) => {
+                  setNewBlogMessage(e.target.value);
+                }}
+              />
               <button onClick={addNewBlog}>Add Blog</button>
             </div>
           )}

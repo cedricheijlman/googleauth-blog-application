@@ -52,9 +52,8 @@ app.post("/addBlog", async (req, res) => {
   try {
     const newBlog = await Blog.create(req.body);
 
-    res.send(201).json({ status: "success", data: newBlog });
+    res.status(201).json({ status: "success", data: newBlog });
   } catch (err) {
-    console.log(err);
     res.status(400).json({ status: "Error", errorMessage: err });
   }
 });
