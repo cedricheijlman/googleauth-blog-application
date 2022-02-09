@@ -14,12 +14,26 @@ function Dashboard({
   const [allBlogs, setAllBlogs] = useState(null);
   const [myBlogs, setMyBlogs] = useState(null);
 
+  const [newBlogName, setNewBlogName] = useState(null);
+  const [newBlogMessage, setNewBlogMessage] = useState(null);
+
   const logout = (result) => {
     console.log(result);
     setUsername(null);
     setImgUrl(null);
     setEmail(null);
   };
+
+  const addNewBlog = () => {
+    if (
+      newBlogMessage &&
+      newBlogName &&
+      newBlogName !== "" &&
+      newBlogMessage !== ""
+    ) {
+    }
+  };
+
   let navigate = useNavigate();
   useEffect(() => {
     if (!username) {
@@ -66,6 +80,12 @@ function Dashboard({
             >
               My Blogs
             </p>
+            <p
+              className={currentOption == "addBlog" ? "selected" : ""}
+              onClick={() => setCurrentOption("addBlog")}
+            >
+              Add Blog
+            </p>
           </div>
 
           {currentOption == "allBlogs" && (
@@ -103,6 +123,17 @@ function Dashboard({
                     );
                   })}
               </div>
+            </div>
+          )}
+
+          {currentOption == "addBlog" && (
+            <div className="blogContainer">
+              <h2>Add Blog</h2>
+              <h5>Blog Name</h5>
+              <input onChange={(e) => setNewBlogName(e.target.value)} />
+              <h5>Blog Message</h5>
+              <input onChange={(e) => setNewBlogMessage(e.target.value)} />
+              <button onClick={addNewBlog}>Add Blog</button>
             </div>
           )}
         </div>
