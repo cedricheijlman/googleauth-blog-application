@@ -13,10 +13,11 @@ function Dashboard({
   const [currentOption, setCurrentOption] = useState("allBlogs");
   const [allBlogs, setAllBlogs] = useState(null);
   const [myBlogs, setMyBlogs] = useState(null);
-
+  const [added, setAdded] = useState(false);
   const [newBlogName, setNewBlogName] = useState(null);
   const [newBlogMessage, setNewBlogMessage] = useState(null);
 
+  let navigate = useNavigate();
   const logout = (result) => {
     console.log(result);
     setUsername(null);
@@ -38,11 +39,14 @@ function Dashboard({
         blogEmail: email,
       }).then((result) => {
         console.log(result);
+        setAdded(true);
+        setInterval(() => {
+          setAdded(false);
+        }, 4000);
       });
     }
   };
 
-  let navigate = useNavigate();
   useEffect(() => {
     if (!username) {
       navigate("/");
@@ -147,6 +151,7 @@ function Dashboard({
                 }}
               />
               <button onClick={addNewBlog}>Add Blog</button>
+              {added && <h2 style={{ color: "green" }}>Added New Blog! </h2>}
             </div>
           )}
         </div>
