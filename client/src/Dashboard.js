@@ -57,7 +57,7 @@ function Dashboard({
     }
 
     if (username) {
-      Axios.get(`${process.env.REACT_APP_BACKEND_URL}/allBlogs`).then(
+      Axios.get(`${process.env.REACT_APP_BACKEND_URL}/allBlogsExcUser`).then(
         (result) => {
           console.log(result.data.allBlogs);
           setAllBlogs(result.data.allBlogs);
