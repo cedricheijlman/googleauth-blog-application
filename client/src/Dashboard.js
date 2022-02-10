@@ -38,14 +38,16 @@ function Dashboard({
         blogUser: username,
         blogEmail: email,
       };
-      Axios.post("http://localhost:3001/addBlog", newBlog).then((result) => {
-        console.log(result);
-        setAdded(true);
-        myBlogs.push(newBlog);
-        setInterval(() => {
-          setAdded(false);
-        }, 4000);
-      });
+      Axios.post(`${process_env.REACT_APP_BACKEND_URL}/addBlog`, newBlog).then(
+        (result) => {
+          console.log(result);
+          setAdded(true);
+          myBlogs.push(newBlog);
+          setInterval(() => {
+            setAdded(false);
+          }, 4000);
+        }
+      );
     }
   };
 
