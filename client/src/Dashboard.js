@@ -13,10 +13,11 @@ function Dashboard({
   const [currentOption, setCurrentOption] = useState("allBlogs");
   const [allBlogs, setAllBlogs] = useState(null);
   const [myBlogs, setMyBlogs] = useState(null);
-
+  const [added, setAdded] = useState(false);
   const [newBlogName, setNewBlogName] = useState(null);
   const [newBlogMessage, setNewBlogMessage] = useState(null);
 
+  let navigate = useNavigate();
   const logout = (result) => {
     console.log(result);
     setUsername(null);
@@ -31,22 +32,43 @@ function Dashboard({
       newBlogName !== "" &&
       newBlogMessage !== ""
     ) {
+      let newBlog = {
+        blogName: newBlogName,
+        blogMessage: newBlogMessage,
+        blogUser: username,
+        blogEmail: email,
+      };
+      Axios.post("http://localhost:3001/addBlog", newBlog).then((result) => {
+        console.log(result);
+        setAdded(true);
+        myBlogs.push(newBlog);
+        setInterval(() => {
+          setAdded(false);
+        }, 4000);
+      });
     }
   };
 
-  let navigate = useNavigate();
   useEffect(() => {
     if (!username) {
       navigate("/");
     }
 
     if (username) {
+<<<<<<< HEAD
       Axios.get(`${process.env.REACT_APP_BACKEND_URL}/allBlogs`).then(
         (result) => {
           console.log(result.data.allBlogs);
           setAllBlogs(result.data.allBlogs);
         }
       );
+=======
+      Axios.post("http://localhost:3001/allBlogsExcUser", {
+        email: email,
+      }).then((result) => {
+        setAllBlogs(result.data.allBlogsExcUser);
+      });
+>>>>>>> 8810f0e6608532427506b640d6469428dae6e605
 
       Axios.post(`${process.env.REACT_APP_BACKEND_URL}/userBlogs`, {
         email: email,
@@ -134,8 +156,13 @@ function Dashboard({
               <h5>Blog Name</h5>
               <input onChange={(e) => setNewBlogName(e.target.value)} />
               <h5>Blog Message</h5>
-              <input onChange={(e) => setNewBlogMessage(e.target.value)} />
+              <textarea
+                onChange={(e) => {
+                  setNewBlogMessage(e.target.value);
+                }}
+              />
               <button onClick={addNewBlog}>Add Blog</button>
+              {added && <h2 style={{ color: "green" }}>Added New Blog! </h2>}
             </div>
           )}
         </div>

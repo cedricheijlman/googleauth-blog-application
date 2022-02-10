@@ -47,6 +47,30 @@ img {
   align-items: center;
 }
 
+.blogContainer input {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 250px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.blogContainer textarea {
+  font-size: 16px;
+  width: 450px;
+  height: 200px;
+  padding: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.blogContainer button {
+  border: none;
+  padding: 15px;
+  margin: 25px 0;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .blog {
   margin: 10px 0;
   background-color: rgb(200, 209, 220);
