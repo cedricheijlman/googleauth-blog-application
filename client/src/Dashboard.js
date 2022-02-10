@@ -55,20 +55,12 @@ function Dashboard({
     }
 
     if (username) {
-<<<<<<< HEAD
       Axios.get(`${process.env.REACT_APP_BACKEND_URL}/allBlogs`).then(
         (result) => {
           console.log(result.data.allBlogs);
           setAllBlogs(result.data.allBlogs);
         }
       );
-=======
-      Axios.post("http://localhost:3001/allBlogsExcUser", {
-        email: email,
-      }).then((result) => {
-        setAllBlogs(result.data.allBlogsExcUser);
-      });
->>>>>>> 8810f0e6608532427506b640d6469428dae6e605
 
       Axios.post(`${process.env.REACT_APP_BACKEND_URL}/userBlogs`, {
         email: email,

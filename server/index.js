@@ -58,11 +58,7 @@ app.post("/addBlog", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 const port = process.env.PORT || 3002;
-=======
-const port = process.env.port || 3001;
->>>>>>> 8810f0e6608532427506b640d6469428dae6e605
 app.listen(port, () => {
   console.log(`Running on port ${port}`);
 });
