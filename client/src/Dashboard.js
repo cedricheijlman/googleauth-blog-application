@@ -20,7 +20,6 @@ function Dashboard({
 
   let navigate = useNavigate();
   const logout = (result) => {
-    console.log(result);
     setUsername(null);
     setImgUrl(null);
     setEmail(null);
@@ -41,7 +40,6 @@ function Dashboard({
       };
       Axios.post(`${process.env.REACT_APP_BACKEND_URL}/addBlog`, newBlog).then(
         (result) => {
-          console.log(result);
           setAdded(true);
           myBlogs.push(newBlog);
           setInterval(() => {
@@ -66,14 +64,12 @@ function Dashboard({
       Axios.post(`${process.env.REACT_APP_BACKEND_URL}/allBlogsExcUser`, {
         email: email,
       }).then((result) => {
-        console.log(result, "result");
         setAllBlogs(result.data.allBlogsExcUser);
       });
 
       Axios.post(`${process.env.REACT_APP_BACKEND_URL}/userBlogs`, {
         email: email,
       }).then((result) => {
-        console.log(result);
         setMyBlogs(result.data.userBlogs);
       });
     }
