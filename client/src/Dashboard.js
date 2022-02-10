@@ -57,12 +57,12 @@ function Dashboard({
     }
 
     if (username) {
-      Axios.get(`${process.env.REACT_APP_BACKEND_URL}/allBlogsExcUser`).then(
-        (result) => {
-          console.log(result.data.allBlogs);
-          setAllBlogs(result.data.allBlogs);
-        }
-      );
+      Axios.post(`${process.env.REACT_APP_BACKEND_URL}/allBlogsExcUser`, {
+        email: email,
+      }).then((result) => {
+        console.log(result.data.allBlogs);
+        setAllBlogs(result.data.allBlogs);
+      });
 
       Axios.post(`${process.env.REACT_APP_BACKEND_URL}/userBlogs`, {
         email: email,
