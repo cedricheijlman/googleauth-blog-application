@@ -147,6 +147,7 @@ function Dashboard({
           {currentOption == "addBlog" && (
             <div className="blogContainer">
               <h2>Add Blog</h2>
+              {added && <h2 style={{ color: "green" }}>Added New Blog! </h2>}
               <h5>Blog Name</h5>
               <input onChange={(e) => setNewBlogName(e.target.value)} />
               <h5>Blog Message</h5>
@@ -156,7 +157,6 @@ function Dashboard({
                 }}
               />
               <button onClick={addNewBlog}>Add Blog</button>
-              {added && <h2 style={{ color: "green" }}>Added New Blog! </h2>}
             </div>
           )}
         </div>
