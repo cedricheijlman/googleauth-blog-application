@@ -16,6 +16,7 @@ function Dashboard({
   const [added, setAdded] = useState(false);
   const [newBlogName, setNewBlogName] = useState(null);
   const [newBlogMessage, setNewBlogMessage] = useState(null);
+  const [noInput, setNoInput] = useState(false);
 
   let navigate = useNavigate();
   const logout = (result) => {
@@ -48,6 +49,11 @@ function Dashboard({
           }, 4000);
         }
       );
+    } else {
+      setNoInput(true);
+      setInterval(() => {
+        setNoInput(false);
+      }, 3000);
     }
   };
 
@@ -148,6 +154,11 @@ function Dashboard({
             <div className="blogContainer">
               <h2>Add Blog</h2>
               {added && <h2 style={{ color: "green" }}>Added New Blog! </h2>}
+              {noInput && (
+                <h2 style={{ color: "red" }}>
+                  No Blog Name or/and Blog Message inserted!
+                </h2>
+              )}
               <h5>Blog Name</h5>
               <input onChange={(e) => setNewBlogName(e.target.value)} />
               <h5>Blog Message</h5>
