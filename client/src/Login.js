@@ -12,7 +12,7 @@ function Login({ setUsername, setImgUrl, setEmail }) {
   };
 
   const handleFailure = (result) => {
-    alert(result);
+    console.log(result);
   };
   return (
     <div>
