@@ -41,12 +41,14 @@ function Dashboard({
     }
 
     if (username) {
-      Axios.get("http://localhost:3001/allBlogs").then((result) => {
-        console.log(result.data.allBlogs);
-        setAllBlogs(result.data.allBlogs);
-      });
+      Axios.get(`${process.env.REACT_APP_BACKEND_URL}/allBlogs`).then(
+        (result) => {
+          console.log(result.data.allBlogs);
+          setAllBlogs(result.data.allBlogs);
+        }
+      );
 
-      Axios.post("http://localhost:3001/userBlogs", {
+      Axios.post(`${process.env.REACT_APP_BACKEND_URL}/userBlogs`, {
         email: email,
       }).then((result) => {
         console.log(result);
