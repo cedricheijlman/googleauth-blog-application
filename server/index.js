@@ -59,7 +59,7 @@ app.post("/addBlog", async (req, res) => {
   }
 });
 
-const port = 3001;
+const port = process.env.PORT || 3002;
 app.listen(port, () => {
   console.log(`Running on port ${port}`);
 });
