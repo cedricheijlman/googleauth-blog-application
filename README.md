@@ -5,6 +5,9 @@
 
 **Only people with an @roc-dev.com email can login.**
 
+## Time Taken
+2 Days
+
 ## Features
 * Login with google
 * See All posts
