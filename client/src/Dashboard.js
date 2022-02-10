@@ -38,7 +38,7 @@ function Dashboard({
         blogUser: username,
         blogEmail: email,
       };
-      Axios.post(`${process_env.REACT_APP_BACKEND_URL}/addBlog`, newBlog).then(
+      Axios.post(`${process.env.REACT_APP_BACKEND_URL}/addBlog`, newBlog).then(
         (result) => {
           console.log(result);
           setAdded(true);
