@@ -61,7 +61,7 @@ function Dashboard({
         email: email,
       }).then((result) => {
         console.log(result, "result");
-        setAllBlogs(result.data.allBlogs);
+        setAllBlogs(result.data.allBlogsExcUser);
       });
 
       Axios.post(`${process.env.REACT_APP_BACKEND_URL}/userBlogs`, {
