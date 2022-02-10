@@ -56,11 +56,11 @@ function Dashboard({
       navigate("/");
     }
 
-    if (username) {
+    if (username && email) {
       Axios.post(`${process.env.REACT_APP_BACKEND_URL}/allBlogsExcUser`, {
         email: email,
       }).then((result) => {
-        console.log(result.data.allBlogs);
+        console.log(result, "result");
         setAllBlogs(result.data.allBlogs);
       });
 
@@ -71,7 +71,7 @@ function Dashboard({
         setMyBlogs(result.data.userBlogs);
       });
     }
-  }, [username]);
+  }, [username, email]);
 
   return (
     <div className="dashboard">
